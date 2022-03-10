@@ -60,16 +60,16 @@ ___
 | Semana 2  | GitHub
 |           |  Bibliografía básica: Getting started with GitHub. (s/f). WorlBank. https://github.com/worldbank/DIME-Resources/blob/master/onboarding-3-git.pdf
 | Semana 3 | R-script I : Programación básica
-|           |  Bibliografía básica: [G] Chapter 4, 5
+|           |  Bibliografía básica: [JMR] Chapter 1, 2, 3
 | Semana 4 | Feriado 
 | Semana 5 | R-script II: Programación con funciones
-|           |  Bibliografía básica: [G] Chapter 4, 5 
+|           |  Bibliografía básica: [JMR] Chapter 5 
 | Semana 6 | R-script III: Datos estructurados y gráficos
-|           |  Bibliografía básica: [G] Chapter 6, 7 
+|           |  Bibliografía básica: [JMR] Chapter 6, 7 
 | Semana 7 | R-Markdown: Archivos dinámicos
 |           |  Bibliografía básica: [G] Chapter 1, Chapter 2 
 | Semana 8 | Archivos grandes: i) R-Markdown, ii) Látex, archivos .bib
-|           |  [G] Chapter 11, Chapter 12 
+|           |  Bibliografía básica: [G] Chapter 11, Chapter 12 
 | Semana 9 | **_EXAMEN PARCIAL_**
 | Semana 10 | Simulación 1: Monte Carlo básico
 |           |  Bibliografía básica:  [JMR] Chapter 20.1-20.3
