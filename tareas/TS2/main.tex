@@ -1,0 +1,234 @@
+\documentclass[12pt,oneside]{book}
+%
+
+\usepackage{sectsty}
+%\allsectionsfont{\color{blue}\itshape\underline}
+\sectionfont{\color{blue}\underline \selectfont}
+%\subsectionfont{\color{green}\itshape\selectfont}
+
+
+\usepackage{comment}
+%\usepackage[inline]{enumitem}  
+%\usepackage[inline]{enumitem}
+\usepackage{nicefrac}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ %total={160mm,257mm},
+ total={160mm,240mm},
+ left=25mm,
+ top=30mm,
+ }
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,snakes,backgrounds}
+\usepackage{systeme}
+
+\usepackage{multicol}
+
+\newcommand{\ssitem}[1][black]{\stepcounter{enumii}\item[\color{#1}$\bm{*}$\,(\alph{enumii})]}
+\newcommand{\sitem}[1][black]{\stepcounter{enumi}\item[\color{#1}$\bm{*}$\,\theenumi.]}
+\newcommand{\dsitem}[1][black]{\stepcounter{enumi}\item[\color{#1}$\bm{**}$\,\theenumi.]}
+
+%\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+%\setlist[enumerate,2]{label=\textbf{\alph*)}}
+
+
+%Paquetes para graficar
+\usepackage{tikz, tkz-base, tkz-fct, tkz-euclide}
+
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm, compat=newest}
+
+%Paquetes para crear tablas
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{multirow}
+
+
+%\newcommand{\ssitem}[1][black]{\stepcounter{enumii}\item[\color{#1}$\bm{*}$\,(\alph{enumii})]}
+%\newcommand{\sitem}[1][black]{\stepcounter{enumi}\item[\color{#1}$\bm{*}$\,\theenumi.]}
+%\newcommand{\dsitem}[1][black]{\stepcounter{enumi}\item[\color{#1}$\bm{**}$\,\theenumi.]}
+
+%\setlist[enumerate,1]{label=\textbf{\arabic*.}}
+%\setlist[enumerate,2]{label=\textbf{\alph*)}}
+
+%\newcommand{}[]{}\abs{\lvert}{\rvert}
+
+\makeatletter
+% item en la misma linea
+\newcommand{\inlineitem}[1][]{%
+\ifnum\enit@type=\tw@
+    {\descriptionlabel{#1}}
+  \hspace{\labelsep}%
+\else
+  \ifnum\enit@type=\z@
+       \refstepcounter{\@listctr}\fi
+    \quad\@itemlabel\hspace{\labelsep}%
+\fi}
+\makeatother 
+ 
+%
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish, es-tabla]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,latexsym,cancel}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+
+\usepackage{enumerate}
+\usepackage{dsfont}
+\usepackage{tcolorbox}
+%\usepackage{subcaption}
+
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{enumerate}
+\usepackage{dsfont}
+\usepackage{tcolorbox}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{multirow}
+%\theoremheaderfont{\textbf}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish, es-tabla]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,latexsym,cancel}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{enumerate}
+\usepackage{dsfont}
+\usepackage{tcolorbox}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+%\theoremstyle{theoremdd}
+
+%\newtheorem{assu}{Assumption}[chapter]
+%\newtheorem{definition}{Definici\'on}[chapter]
+%\newtheorem{prop}{Proposici\'on}[chapter]
+%\newtheorem{theorem}{Teorema}[chapter]
+%\newtheorem{lemm}{Lemma}[chapter]
+%\newtheorem{coro}{Corollary}[chapter]
+%\newtheorem{claim}{Claim}[chapter]
+%\newtheorem{reme}{Remember}[chapter]
+%\newtheorem{sublemma}{Sublemma}[chapter]
+%\newtheorem{rema}{Remark}[chapter]
+%\newtheorem{example}{Ejemplo}[chapter]
+%\newtheorem{prob}{Problem}[chapter]
+%\newtheorem{question}{Question}[chapter]
+%\newtheorem{exercise}{Exercise}[chapter]
+%\newtheorem{conjecture}{Conjecture}[chapter]
+%\newtheorem{axio}{Axioma}[chapter]
+
+
+\newtheorem{assumption}{Supuesto}[chapter]
+\newtheorem{definition}{Definici\'on}[chapter]
+\newtheorem{proposition}{Proposici\'on}[chapter]
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{lemma}{Lema}[chapter]
+\newtheorem{corollary}{Corolario}[chapter]
+\newtheorem{claim}{Afirmaci\'on}[chapter]
+\newtheorem{reme}{Recuerda}[chapter]
+\newtheorem{sublemma}{Sublema}[chapter]
+\newtheorem{remark}{Observaci\'on}[chapter]
+\newtheorem{example}{Ejemplo}[chapter]
+\newtheorem{problem}{Problema}[chapter]
+\newtheorem{question}{Pregunta}[chapter]
+\newtheorem{exercise}{Ejercicio}[chapter]
+\newtheorem{conjecture}{Conjetura}[chapter]
+\newtheorem{axiom}{Axioma}[chapter]
+
+%\newtheorem{emp}[section]{}
+
+\newtheorem{proty}[theorem]{Propiedades}%[chapter]
+\newcommand{\bproty}{\begin{proty}}
+\newcommand{\eproty}{\end{proty}}
+
+%\newcommand{\be}{\begin{enumerate}}
+%\newcommand{\ee}{\end{enumerate}}
+%\newcommand{\bal}{\begin{align*}}
+%\newcommand{\eal}{\end{align*}}
+\newcommand{\vsp}{\vspace{0.8cm}}
+\newcommand{\dv}{\vspace{0.8cm}}
+
+\newcommand{\mbf}{\mathbf}
+\newcommand{\mcal}{\mathcal}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\pro}{P}
+\newcommand{\pr}{\mathbf{P}}
+\newcommand{\esp}{\mathbf{E}\,}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\mF}{\mathcal{F}}
+\newcommand{\mB}{\mathcal{B}}
+\newcommand{\om}{\omega}
+\newcommand{\OM}{\Omega}
+
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+
+\newcommand{\mbr}{\mathbb{R}}
+\newcommand{\xopt}{x^*}
+\usepackage[usenames,dvipsnames,svgnames,x11names]{color}
+
+%\usepackage{arev}
+%\usepackage{ccfonts,eulervm}  %\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+%\usepackage{mathpazo}
+
+\usepackage{longtable}
+\usepackage{framed}
+\usepackage{bbm}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{pdfpages}
+\usepackage{changepage}
+\usepackage{lipsum}% just to generate filler text
+\usepackage[raggedright]{titlesec}
+\usepackage{framed}
+\usepackage[titletoc]{appendix}
+\renewcommand{\appendixname}{Anexos}
+\renewcommand{\appendixtocname}{Anexos}
+\renewcommand{\appendixpagename}{Anexos}
+
+
+%
+%
+\parindent=0cm
+
+
+\begin{document}
+
+%\Large
+
+%\large
+\setcounter{secnumdepth}{6}
+\setcounter{tocdepth}{8}
+
+%\frontmatter
+% \maketitle
+
+\pagestyle{plain}
+
+
+
+
+%\clearpage
+% -------------
+
+%\setcounter{part}{-1}
+
+\input{Silabo}
+
+\end{document}
+
