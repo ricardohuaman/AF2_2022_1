@@ -225,7 +225,7 @@ Es común que el acceso a la rama *main* solo la tenga el repo maintainer (no to
     * Genere un commit. Escriba un mensaje de commit.
     * Selecciones *Push Origin*  
 
-        ![](img/pull_request.png) 
+![](img/pull_request.png) 
 
     * Seleccione *Create Pull request*. Esta acción lo dirigirá a una ventana en el navegador.
 
