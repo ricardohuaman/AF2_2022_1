@@ -1,6 +1,8 @@
 <div style="text-align: center"> 
 
 # Actividades en Finanzas 2
+## Valuación de Opciones y Simulaciones de Monte Carlo en R
+---
 ## Semana 2: GitHub
 ---
 
@@ -137,7 +139,8 @@ ___
 
             ![](img/commit_3.png)
 
-        7. Una vez ubicado ahí, suba el archivo .tex. 
+        7. Una vez ubicado ahí, suba el archivo .tex. (**NOTA:** Recuerde subir el archivo .text con el siguiente formato: *nombre_apellido_TS1*)
+
         8. Ahora vaya al GitHub Desktop. Le aparecerá algo similar a lo siguiente:
 
             ![](img/commit_4.png)   
@@ -188,30 +191,6 @@ Un flujo de trabajo típico en Git implica tener varias ramas (branches). Hay ot
 
 - ¡Ahora ya puedes realizar modificaciones al repo de forma independiente!
 
-
-<br>
-
-## Combinando el commit y el branch 
-
-### Primer commit:
-1. Abre el tab de cambios (changes) en Github Desktop. 
-2. Github desktop se ha dado cuenta que hay nuevos cambios a tu repo.
-
-3. Sigue los siguientes 3 pasos para hacer commit en tu branched repo:  
-    1. Asegúrate de que tus cambios estén marcados. 
-    2. Escribe un mensaje de commit. 
-    3. Haz click en el boton de sync. 
-
-
-#### Verifica tu commit en Github
-
-Ve a https://github.com/ricardohuaman/AF2_2022_1/network
-- ¿Puedes encontrar tu commit ? 
-
-Ve a https://github.com/ricardohuaman/AF2_2022_1/commits
-- ¿Puedes ver tu commit? Asegúrate de mirar tu branch. 
-
-
 <br>
 
 ### Pull requests 
@@ -226,42 +205,36 @@ Es común que el acceso a la rama *main* solo la tenga el repo maintainer (no to
 - Selecciona tu branch como *compare:* branch
 - Scrollea para ver que tus ediciones son las que quieres que se integren con la main branch, dale click a *Create pull request*
 
+
+<br>
+
+----
+## TAREA SEMANAL 2:
+---
+
+### Trabaje sobre el proyecto realizado en Overleaf en la Tarea Semanal 1. Se le pide que .... Finalmente, dado que su archivo *nombre_apellido.tex* ha sido modificado, se le pide subirlo al  repo del curso, en la carpeta TS2.
+
+<br>
+
+* Pasos para colaborar en el repositorio:
+
+    * Cree un branch con el siguiente nombre: *nombre_apellido*
+    * El GitHub Destop, dele click en Fetch Origin para actualizar los cambios, y seleccione su branch. Ahora empezaremos a hacer las modificaciones al repo.
+    * Suba el archivo *nombre_apellido.tex*, el que ha sido modificado, a la carpeta TS2 en su computadora.
+    * Abra el tab de cambios (changes) en Github Desktop. Github desktop se ha dado cuenta que hay nuevos cambios en su archivo.
+    * Genere un commit. Escriba un mensaje de commit. 
+    * Seleccione *Pull request*.
+    * Haga click en *Push Origin*. Esta acción lo dirigirá a una ventana en el navegador.
+    * Haga click en *merge*.
+    * **IMPORTANTE:** Finalmente, elimine su branch.
+
+
 <br>
 
 ### Aprender Github desde el command line: 
 
-- En este tutorial, hemos lo visto los elementos esenciales para utilizar Github, sin embargo, hay una forma de usar Github desde la consola. Aquí hay una lista de referencias en caso quieran explorar más este uso: https://education.github.com/git-cheat-sheet-education.pdf
+- En este tutorial, hemos lo visto los elementos esenciales para utilizar Github,; sin embargo, hay una forma de usar Github desde la consola. Aquí hay una lista de referencias en caso desee explorar más sobre este uso: https://education.github.com/git-cheat-sheet-education.pdf
 
 
-
-
-TAREA 1
-
-LATEX 
-
-NOMBRE 
-APELLIDO
-CODIGO
-
-OUTPUT: PDF_1, .ZIP (UN ARCHIVO .TEXT)
-ENTREGA EN PAIDEIA
-
-
-TAREA 2
-
-EJEMPLO CON EL ARCHIVO LATEX USADO EN CLASE 1
-AÑADIR INFORMACION A ARCHIVO LATEX
-
-TRES TAREAS:
- 1. SUBIR ESE PDF AL REPO (HACER EN CLASE)
-
-    1.1. BRANCH
-    1.2. COMMIT
-    1.3. PULL REQUEST
-    1.4. MERGE
-    1.5. ELIMINAR BRANCH
-
- 2. AL PDF LE AÑADAN LISTA DE CURSOS ESTE CICLO
- 3. SUBIR ESTE NUEVO PDF AL REPOSITORIO PDF_2
 
 </div>
