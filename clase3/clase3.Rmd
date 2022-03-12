@@ -1,31 +1,215 @@
 ---
-title: "Actividades en Finanzas 2"
+title: "Actividades en Finanzas 2: Valuación de Opciones y Simulaciones de Monte Carlo en R"
 subtitle: "Semana 3: R Script I"
-author: "Ricardo Huamàn"
+author: "Ricardo Huamán"
 date: '2022-03-10'
-output: pdf_document
+output: 
+  pdf_document: 
+    highlight: kate
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# R File Manipulation Commands
+
+Limpiar el espacio de trabajo
+
+```{r}
+rm(list=ls())
 ```
 
-## R Markdown
+Para ubicar el espacio de trabajo actual, use el comando **getwd()**
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+getwd()
 ```
 
-## Including Plots
+Para hacer un listado de los directorios y subdirectorios dentro del espacio de trabjo, use el comando **list.files()**
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+list.files()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Si se desea cambiar el espacio de trabajo, se puede settear usando el comando **setwd()**, y dentro de los paréntesis, puede ubicar el path del nuevo espacio de trabajo.
+
+```{r}
+# setwd()
+```
+
+# Instalar paquetes
+
+```{r eval=FALSE}
+install.packages("dplyr")
+```
+
+Luego de haber instalado el paquete, se debe llamar a la librería para poder ser usado en el presente script.
+
+```{r}
+library("dplyr")
+```
+
+# R como un espacio de calculadora
+
+R usa los símbolos usuales de aritmética como + para suma, - para restas, \* para multiplicaciónes, / para división, y \^ para exponente. Asimismo, se pueden usar paréntesis () para especificar el orden de las operaciones. R también usa %% para poder operar módulos y %/% para divisiones enteras.
+
+```{r}
+(1 + 1/100)^100
+17 %% 5
+17 %/% 5
+```
+
+R tiene integrado cierto número de funciones: `sin(x)`, `cos(x)`, `tan(x)`, (todo en radiones), `exp(x)`, `log(x)`, y `sqrt(x)`. Algunas constantes especiales como `pi` también ya están predefinidas.
+
+```{r}
+exp(1)
+```
+
+```{r}
+options(digits = 16)
+exp(1)
+```
+
+```{r}
+ pi
+```
+
+```{r}
+sin(pi/6)
+```
+
+Las funciiones `floor(x)`y `ceiling(x)`redondean hacia arriba y hacia abajo, respectivamente, hasta el entero más cercano.
+
+```{r}
+floor(sin(pi/6))
+ceiling(sin(pi/6))
+```
+
+# Variables
+
+## Tipos de datos
+
+Definiendo objetos
+
+```{r}
+x <- 100  # entero
+```
+
+```{r}
+(1 + 1/x)^x
+```
+
+Actualizando el valor de la variable `x`
+
+```{r}
+x <- 200
+```
+
+```{r}
+(1 + 1/x)^x
+```
+
+Podemos almacenar el resultado de estas operaciones en una variable
+
+```{r}
+y <- (1 + 1/x)^x
+y
+```
+
+## Funciones
+
+En matemática, una función necesita de uno o más argumentos (inputs) para producir uno o más outputs.  
+
+Para llamar a una función en R, se necesita escribir el nombre de la función, seguida de sus argumentos dentro de paréntesis y separados por comas.
+
+La función `seq`genera una secuencia arismética.
+
+```{r}
+seq(from = 1, to = 9, by = 2)
+```
+Algunos argumentos son opcionales, y tienen valores predeterminador. Por ejemplo, si se omite el argumento `by`, R asume que `by = 1`.
+
+```{r}
+seq(from = 1, to = 9)
+```
+Para obtener más información sobre cualquier función o paquete inslatado, puede tipear `help(name)`o `?name`
+
+```{r}
+help(seq)
+```
+
+Cada funciòn tiene un orden determinado para sus argumentos. En este sentido, si se ingresan argumentos en ese orden, no necesitan ser llamados. Por otro lado, se puede elegir el orden en el que se ingresan los argumentos; para esto, se le debe agregar el nombre de dicho argumento.
+
+```{r}
+seq(1, 9, 2)
+```
+```{r}
+seq(to = 9, from = 1)
+```
+```{r}
+seq(by = -2, 9, 1)
+```
+```{r}
+x <- 9
+seq(1, x, x/3)
+```
+## Vectores
+
+```{r}
+(x <- seq(1, 20, by = 2))
+```
+
+```{r}
+(y <- rep(3, 4))
+```
+```{r}
+(z <- c(y, x))
+```
+```{r}
+(x <- 100:110)
+```
+```{r}
+i <- c(1, 3, 2)
+x[i]
+
+```
+```{r}
+j <- c(-1, -2, -3)
+x[j]
+
+```
+
+Creando un vector
+
+```{r}
+carreras = c("comunicacion para el desarrollo",
+             "sociologia",
+             "ciencia politica",
+             "economia",
+             "sistemas",
+             "antropologia")  # c significa concatenar
+```
+
+¿Qué tipo de dato es?
+
+```{r}
+is.integer(carreras)
+is.character(carreras)
+is.factor(carreras)
+```
+
+Transformando el tipo de dato
+
+```{r}
+carreras1 = as.factor(carreras) # variables categóricas
+carreras1
+```
+
+```{r}
+carreras2 = as.numeric(carreras1)
+carreras2
+```
+
+Verificando el tipo de dato
+
+```{r}
+class(carreras1) 
+```
+
