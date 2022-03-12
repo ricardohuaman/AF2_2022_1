@@ -65,7 +65,7 @@ ___
 | Semana 5 | R-script II: Programación con funciones
 |           |  Bibliografía básica: [JMR] Chapter 3, 5 
 | Semana 6 | R-script III: Datos estructurados y gráficos
-|           |  Bibliografía básica: [JMR] Chapter 6, 7 
+|           |  Bibliografía básica: [JMR] Chapter 6, 7 & [G] Chapter 6.2, 6.3
 | Semana 7 | R-Markdown: Archivos dinámicos
 |           |  Bibliografía básica: [G] Chapter 1, Chapter 2 
 | Semana 8 | Archivos grandes: i) R-Markdown, ii) Látex, archivos .bib
