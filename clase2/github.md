@@ -222,11 +222,31 @@ Es común que el acceso a la rama *main* solo la tenga el repo maintainer (no to
     * El GitHub Destop, dele click en Fetch Origin para actualizar los cambios, y seleccione su branch. Ahora empezaremos a hacer las modificaciones al repo.
     * Suba el archivo *nombre_apellido.tex*, el que ha sido modificado, a la carpeta TS2 en su computadora.
     * Abra el tab de cambios (changes) en Github Desktop. Github desktop se ha dado cuenta que hay nuevos cambios en su archivo.
-    * Genere un commit. Escriba un mensaje de commit. 
-    * Seleccione *Pull request*.
-    * Haga click en *Push Origin*. Esta acción lo dirigirá a una ventana en el navegador.
-    * Haga click en *merge*.
-    * **IMPORTANTE:** Finalmente, elimine su branch.
+    * Genere un commit. Escriba un mensaje de commit.
+    * Selecciones *Push Origin*  
+
+        ![](img/pull_request.png) 
+
+    * Seleccione *Create Pull request*. Esta acción lo dirigirá a una ventana en el navegador.
+
+        ![](img/pull_request_2.png) 
+
+    * Haga click nuevamente en *Create Pull request*.
+
+        ![](img/pull_request_3.png) 
+
+    * Haga click en *Merge Pull Request*.
+
+        ![](img/pull_request_4.png)
+            
+    * Luego, haga click en *Confirm Pull Request*
+
+        ![](img/pull_request_5.png) 
+
+    * **IMPORTANTE:** Finalmente, elimine su branch dando click en *Delete branch*.
+        
+        ![](img/pull_request_6.png) 
+  
 
 
 <br>
