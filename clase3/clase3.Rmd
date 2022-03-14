@@ -5,8 +5,9 @@ author: "Ricardo Huamán"
 date: '2022-03-10'
 output: 
   pdf_document: 
-    highlight: tango
+    highlight: zenburn
     number_sections: yes
+    toc: yes
 ---
 
 # R File Manipulation Commands
@@ -18,7 +19,6 @@ rm(list=ls())
 ```
 
 Para ubicar el espacio de trabajo actual, use el comando **getwd()**
-
 ```{r}
 getwd()
 ```
