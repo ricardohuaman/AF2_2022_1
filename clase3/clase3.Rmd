@@ -5,7 +5,8 @@ author: "Ricardo Huamán"
 date: '2022-03-10'
 output: 
   pdf_document: 
-    highlight: kate
+    highlight: tango
+    number_sections: yes
 ---
 
 # R File Manipulation Commands
@@ -115,7 +116,7 @@ y
 
 ## Funciones
 
-En matemática, una función necesita de uno o más argumentos (inputs) para producir uno o más outputs.  
+En matemática, una función necesita de uno o más argumentos (inputs) para producir uno o más outputs.
 
 Para llamar a una función en R, se necesita escribir el nombre de la función, seguida de sus argumentos dentro de paréntesis y separados por comas.
 
@@ -124,11 +125,13 @@ La función `seq`genera una secuencia arismética.
 ```{r}
 seq(from = 1, to = 9, by = 2)
 ```
+
 Algunos argumentos son opcionales, y tienen valores predeterminador. Por ejemplo, si se omite el argumento `by`, R asume que `by = 1`.
 
 ```{r}
 seq(from = 1, to = 9)
 ```
+
 Para obtener más información sobre cualquier función o paquete inslatado, puede tipear `help(name)`o `?name`
 
 ```{r}
@@ -140,17 +143,25 @@ Cada funciòn tiene un orden determinado para sus argumentos. En este sentido, s
 ```{r}
 seq(1, 9, 2)
 ```
+
 ```{r}
 seq(to = 9, from = 1)
 ```
+
 ```{r}
 seq(by = -2, 9, 1)
 ```
+
+Cada argumento es una expresiòn que puede ser definida como una constante, una variable, otra funciòn o alguna combinaciòn algebraica de estas.
+
 ```{r}
 x <- 9
 seq(1, x, x/3)
 ```
+
 ## Vectores
+
+Un vector es una lista indexada de variables.
 
 ```{r}
 (x <- seq(1, 20, by = 2))
@@ -159,57 +170,347 @@ seq(1, x, x/3)
 ```{r}
 (y <- rep(3, 4))
 ```
+
 ```{r}
 (z <- c(y, x))
 ```
+
+Para referirnos al elemento *i* de un vector **x**, usamos `x[i]`.
+
 ```{r}
 (x <- 100:110)
 ```
+
 ```{r}
 i <- c(1, 3, 2)
 x[i]
 
 ```
+
 ```{r}
 j <- c(-1, -2, -3)
 x[j]
 
 ```
 
-Creando un vector
-
 ```{r}
-carreras = c("comunicacion para el desarrollo",
-             "sociologia",
-             "ciencia politica",
-             "economia",
-             "sistemas",
-             "antropologia")  # c significa concatenar
+x[1] <- 1000
+x
 ```
 
-¿Qué tipo de dato es?
+La función `length(x)`devuelve el número de elementos de `x` . Es posible tener un vector vacío.
 
 ```{r}
-is.integer(carreras)
-is.character(carreras)
-is.factor(carreras)
+x <- c()
+length(x)
+
 ```
 
-Transformando el tipo de dato
+Se puede realizar operaciones algebraicas entre vectores. Estas operaciones se aplican en cada uno de los elementos de un vector de forma separada.
 
 ```{r}
-carreras1 = as.factor(carreras) # variables categóricas
-carreras1
+x <- c(1, 2, 3)
+y <- c(4, 5, 6)
+x * y
 ```
 
 ```{r}
-carreras2 = as.numeric(carreras1)
-carreras2
+x + y
 ```
-
-Verificando el tipo de dato
 
 ```{r}
-class(carreras1) 
+y^x
 ```
 
+Cuando se realizan operaciones algebraicas entre vectores de diferentes dimensiones, R repite el vector más corto hasta obtener un resultado del mismo tamaño que el vector más largo.
+
+```{r}
+c(1, 2, 3, 4) + c(1, 2)
+```
+
+```{r}
+(1:10) ^ c(1, 2)
+```
+
+Esto sucede si incluso el vector más corto es de tamaño 1.
+
+```{r}
+2 + c(1, 2, 3)
+```
+
+```{r}
+2 * c(1, 2, 3)
+```
+
+```{r}
+(1:10)^2
+```
+
+Algunas funciones útiles son:
+
+-   `sum(…)`
+
+-   `prod(…)`
+
+```{=html}
+<!-- -->
+```
+-   `max(…)`
+
+```{=html}
+<!-- -->
+```
+-   `min(…)`
+
+```{=html}
+<!-- -->
+```
+-   `sqrt(…)`
+
+```{=html}
+<!-- -->
+```
+-   `sort(…)`
+
+```{=html}
+<!-- -->
+```
+-    `mean(…)`
+
+```{=html}
+<!-- -->
+```
+-   `var(…)`
+
+```{r}
+sqrt(1:6)
+```
+
+```{r}
+mean(1:6)
+```
+
+```{r}
+sort(c(5,1,3,4,2))
+```
+
+### EJEMPLO 1: MEDIA Y VARIANZA
+
+```{r}
+x <- c(1.2, 0.9, 0.8, 1.0, 1.2)
+x.mean <- sum(x)/length(x)
+x.mean - mean(x)
+```
+
+```{r}
+x.var <- sum((x - x.mean)^2)/(length(x) - 1)
+x.var - var(x)
+
+```
+
+### EJEMPLO 2: INTEGRACIÓN NUMÉRICA SIMPLE
+
+```{r}
+dt <- 0.005
+t <- seq(0, pi/6, by = dt)
+ft <- cos(t)
+(I <- sum(ft)*dt)
+
+```
+
+\*Nota: `t` es un vector, entonces `ft` también es un vector, en donde `ft[i]` es igual a `cos(t[i])`.
+
+```{r}
+I - sin(pi/6)
+```
+
+### EJEMPLO 3: LÍMITE EXPONENCIAL
+
+```{r}
+x <- seq(10, 200, by = 10)
+y <- (1 + 1/x)^x
+exp(1) - y
+```
+
+```{r}
+plot(x, y)
+```
+
+## Datos missing: NA
+
+En experimentos reales, sucede muy a menudo que ciertas observaciones registran datos missing. Dependiendo del análisis estadístico, los datos missing pueden ser ignorados o imputados.
+
+R representa los datos missing a través del valor NA. Estos pueden ser parte de datos con otro tipo de registro. Se puede detectar si una variable contiene missing values usando `is.na(…)`.
+
+```{r}
+a <- NA   # Asignando NA a una variable
+is.na(a)  # Esta variable es missing?
+```
+
+```{r}
+a <- c(11,NA,13)  # Asignando NA a uno de los elementos de un vector
+is.na(a)          # Identificando los valores missings
+```
+
+```{r}
+any(is.na(a))   #Hay algún dato missing?
+```
+
+```{r}
+mean(a)
+```
+
+```{r}
+ mean(a, na.rm = TRUE)  # Los valores missings pueden ser removidos
+```
+
+## Expresiones lógicas
+
+-   `<` o `>`
+
+-   `<=` o `>=`
+
+-   `==` igual a
+
+-   `!=` no igual a
+
+-   `&` y
+
+-   `|`o
+
+-   `!` no
+
+-   Note que `A|B` es `TRUE` si `A`o `B` o ambos son TRUE. Si se busca una disyuntiva exclusiva, entre A o B, pero no ambos, usar `xcor(A,B)`.
+
+```{r}
+c(0,0,1,1)|c(0,1,0,1)
+```
+
+```{r}
+xor(c(0,0,1,1),c(0,1,0,1))
+```
+
+-   Encontrar los números de 1 a 20 que son divisibles entre 4
+
+```{r}
+x <- 1:20
+x %% 4 == 0
+```
+
+```{r}
+(y <- x[x %% 4 == 0])
+```
+
+R también provee la función `subset(x)` para elegir un vector o subvector de una variable x. La diferencia entre usar `subset` y usar el operador de indexación es que `subset` ignora los missing values, mientras que `x[subset]` los preserva.
+
+```{r}
+x <- c(1, NA, 3, 4)
+x > 2
+```
+
+```{r}
+x[x > 2]
+```
+
+```{r}
+subset(x, subset = x > 2)
+```
+
+Si se busca conocer el índex de aquellos elementos que devuelven TRUE después de una expresión lógica, se usa `which(x)`.
+
+```{r}
+x <- c(1, 1, 2, 3, 5, 8, 13)
+which(x %% 2 == 0)
+```
+
+### EJEMPLO: ROUNDING ERROR
+
+```{r}
+2 * 2 == 4
+```
+
+```{r}
+sqrt(2) * sqrt(2) == 2
+```
+
+```{r}
+all.equal(sqrt(2) * sqrt(2), 2)
+```
+
+## Matrices
+
+Una matriz es creada con vectores. Se usa la función `matrix(data, nrow = 1, ncol = 1, byrow = FALSE)`.
+
+```{r}
+(A <- matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE))
+
+```
+
+Para conocer la dimensión de una matriz, se usa `dim`
+
+```{r}
+dim(A)
+```
+
+Para crear una matriz diagonal, se usa `diag(x)`. Para unir matrices con la misma cantidad de filas, se usa `rbind(x)`. Para unir matrices con columnas de la misma extensión (unión horizontal), se usa `cbind()`.
+
+```{r}
+A[1, 3] <- 0
+A[, 2:3]
+```
+
+```{r}
+(B <- diag(c(1, 2, 3)))
+```
+
+```{r}
+(A <- matrix(c(3, 5, 2, 3), nrow = 2, ncol = 2))
+
+```
+
+```{r}
+(B <- matrix(c(1, 1, 0, 1), nrow = 2, ncol = 2))
+```
+
+```{r}
+ A %*% B
+```
+
+```{r}
+ A * B
+```
+
+```{r}
+ (A.inv <- solve(A))
+```
+
+```{r}
+A %*% A.inv
+```
+
+```{r}
+ A^(-1)
+```
+
+```{r}
+A <- matrix(c(3, 5, 2, 3), nrow = 2, ncol = 2)
+(x <- c(1,2))
+```
+
+```{r}
+ x %*% A
+```
+
+```{r}
+ A %*% x
+```
+
+```{r}
+
+```
+
+## Espacio de trabajo
+
+Para hacer un listado de todos los objetos, use `ls()` o `objects()`. Para remover el objeto `x`, use `rm(x)`. Para remover todo los objetos, use `rm(list=ls())`
+
+Para guardar todos los objetos en un archivo llamado `fname` en el espacio de trabajo actual, use `save.image(file = "fname")`. Para guardar objetos específicos, use `save(x, y, file = "fname").` Para abrir un set de objetos guardados, use `load(file = "fname")`.
