@@ -1,0 +1,318 @@
+---
+title: "Actividades en Finanzas 2: Valuación de Opciones y Simulaciones de Monte Carlo en R"
+subtitle: "Semana 5: R Script II"
+author: "Ricardo Huamán"
+date: '2022-03-10'
+output: 
+  pdf_document: 
+    highlight: zenburn
+    number_sections: yes
+    toc: yes
+---
+
+# Datos estructurados y gráficos
+
+## 1. Programación básica
+
+```{r}
+# Limpiando el espacio de trbajo 
+
+rm(list=ls())
+```
+
+#### Ejemplo: Raices de una ecuación cuadrática 1
+
+El programa en R script se encuentra en: `data/quad1.r`
+
+Objetivo del programa: Encontrar las raíces de una ecuación cuadrática $a_2*x^2 + a_1*x + a_0 = 0$
+
+```{r}
+# Limpiar el espacio de trabajo
+rm(list=ls())
+```
+
+```{r}
+# input
+a2 <- 1
+a1 <- 4
+a0 <- 2
+```
+
+```{r}
+# cálculos
+root1 <- (-a1 + sqrt(a1^2 - 4*a2*a0))/(2*a2)
+root2 <- (-a1 - sqrt(a1^2 - 4*a2*a0))/(2*a2)
+```
+
+```{r}
+# output
+print(c(root1, root2))
+```
+
+```{r}
+# Ejecutando el programa
+source("data/quad1.r")
+```
+
+### Usando `if`
+
+A veces se busca que el programa ejecute un código de acuerdo a ciertas condiciones.
+
+`if (logical_expression) {
+    expression_1
+    ...
+}`
+Una extensión del comando `if` incluye el `else`
+
+`if (logical_expression) {
+    expression_1
+    ...
+} else {
+    expression_2
+    ...
+}`
+
+Las llaves `{}`se usan para agrupar a una o más expresiones. Si solo hay una expresión, el uso de las llaves es opcional.
+
+Cuando se evalúa una expresión, si `logical_expression` es `TRUE`, entonces se ejecuta el primer grupo de expresiones, mientras que el segundo grupo de expresiones no se ejecuta. Por el contrario, si `logical_expression` es `FALSE`, entonces solo se ejecuta el segundo grupo de expresiones. Estas instrucciones se pueden anidar para elaborar caminos a través de un programa.
+
+#### Ejemplo: Raices de una ecuación cuadrática 2
+
+El programa en R script se encuentra en: `data/quad2.r.` Esta es una versión mejorada del script anterior.
+
+Objetivo del programa: Encontrar las raíces de una ecuación cuadrática $a_2*x^2 + a_1*x + a_0 = 0$
+
+```{r}
+# Limpiar el espacio de trabajo
+rm(list=ls())
+```
+
+```{r}
+# input
+a2 <- 3
+a1 <- 8
+a0 <- 5
+```
+
+```{r}
+# calcular el discriminante 
+discrim <- a1^2 - 4*a2*a0
+```
+
+```{r}
+# calcular las raíces dependiendo del valor del discriminante
+if (discrim > 0) {
+  roots <- c( (-a1 + sqrt(a1^2 - 4*a2*a0))/(2*a2),
+              (-a1 - sqrt(a1^2 - 4*a2*a0))/(2*a2) )
+} else {
+  if (discrim == 0) {
+    roots <- -a1/(2*a2)
+  } else {
+    roots <- c()
+  }
+}
+```
+
+```{r}
+# output
+show(roots)
+```
+
+```{r}
+# Ejecutando el programa
+source("data/quad2.r")
+```
+
+### Usando `for`
+
+El comando `for` tiene la siguiente forma, en donde `x` es una variable y `vector` es un vector.
+
+`for (x in vector) {
+    expression_1
+    ...
+}`
+
+Cuando se ejecuta este programa, el comando `for`ejecuta el grupo de expresiones contenidas en `{}`, una por cada elemento dentro de `vector`.
+
+#### Ejemplo: Sumando vectores
+
+```{r}
+(x_list <- seq(1, 9, by = 2))
+```
+
+```{r}
+ sum_x <- 0
+```
+
+```{r}
+for (x in x_list) {
+ sum_x <- sum_x + x
+ cat("The current loop element is", x, "\n")
+ cat("The cumulative total is", sum_x, "\n")
+}
+
+```
+
+```{r}
+sum(x_list)
+```
+
+#### Ejemplo: n factorial 1
+
+El programa en R script se encuentra en: `data/nfact1.r.`
+
+Objetivo del programa: Encontrar el factorial de un número.
+
+```{r}
+# Limpiar el espacio de trabajo
+rm(list=ls())
+```
+
+```{r}
+# Input
+n <- 6
+```
+
+```{r}
+# Calculo
+n_factorial <- 1
+for (i in 1:n) {
+  n_factorial <- n_factorial * i
+}
+```
+
+```{r}
+# Output
+show(n_factorial)
+```
+
+```{r}
+# Ejecutando el programa
+source("data/nfact1.r")
+```
+
+#### Ejemplo: Valor de pensiones
+
+El programa en R script se encuentra en: `data/pension.r.`
+
+Objetivo del programa: Encontrar el valor de un fondo de pensiones bajo interés compuesto.
+
+```{r}
+# Limpiar el espacio de trabajo
+rm(list=ls())
+```
+
+```{r}
+# Inputs
+r <- 0.11 # Annual interest rate
+term <- 10 # Forecast duration (in years)
+period <- 1/12 # Time between payments (in years)
+payments <- 100 # Amount deposited each period
+
+```
+
+```{r}
+# Calculos
+n <- floor(term/period) # Number of payments
+pension <- 0
+for (i in 1:n) {
+  pension[i+1] <- pension[i]*(1 + r*period) + payments
+}
+time <- (0:n)*period
+```
+
+```{r}
+# Output
+plot(time, pension)
+```
+
+```{r}
+# Ejecutando el programa
+source("data/pension.r")
+```
+
+### Loop usando `while`
+
+A veces no se sabe cuántas veces se necesita correr un loop. Es decir, cada vez que corre un loop, se verifican ciertas condiciones para ver si es que el loop está completo o no. El loop `while` tiene la siguiente forma:
+
+`while (logical_expression) {
+    expression_1
+    ...
+}`
+
+#### Ejemplo: Números Fibonacci
+
+El programa en R script se encuentra en: `data/fibonacci.r.`
+
+Objetivo del programa: Encontrar el valor de un número Fibonacci mayor que 100.
+
+```{r}
+# Limpiar el espacio de trabajo
+rm(list=ls())
+```
+
+```{r}
+# initialise variables
+F <- c(1, 1) # list of Fibonacci numbers
+n <- 2 # length of F
+```
+
+```{r}
+# iteratively calculate new Fibonacci numbers
+while (F[n] <= 100) {
+  cat("n =", n, " F[n] =", F[n], "\n")
+  n <- n + 1
+  F[n] <- F[n-1] + F[n-2]
+}
+```
+
+```{r}
+# output
+cat("The first Fibonacci number > 100 is F(", n, ") =", F[n], "\n")
+```
+
+```{r}
+# Ejecutando el programa
+source("data/fibonacci.r")
+```
+
+#### Ejemplo: Interés compuesto
+
+El programa en R script se encuentra en: data/compoud.r
+
+Objetivo del programa: Encontrar el valor de un número Fibonacci mayor que 100.
+
+```{r}
+# Limpiar el espacio de trabajo
+rm(list=ls())
+```
+
+```{r}
+# Inputs
+r <- 0.11 # Annual interest rate
+period <- 1/12 # Time between repayments (in years)
+debt_initial <- 1000 # Amount borrowed
+repayments <- 12 # Amount repaid each period
+```
+
+```{r}
+# Calculations
+time <- 0
+debt <- debt_initial
+while (debt > 0) {
+  time <- time + period
+  debt <- debt*(1 + r*period) - repayments
+}
+```
+
+```{r}
+# Output
+cat('Loan will be repaid in', time, 'years\n')
+```
+
+```{r}
+# Ejecutando el programa
+source("data/compound.r")
+```
+
+

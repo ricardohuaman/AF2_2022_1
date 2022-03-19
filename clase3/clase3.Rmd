@@ -19,6 +19,7 @@ rm(list=ls())
 ```
 
 Para ubicar el espacio de trabajo actual, use el comando **getwd()**
+
 ```{r}
 getwd()
 ```
@@ -87,7 +88,11 @@ ceiling(sin(pi/6))
 
 ## Tipos de datos
 
-Definiendo objetos
+Para asignar un valor a una variable, se utiliza el comando `<-`. Las variables se crean en la primera vez en que se les asigna un valor. Estas pueden ser llamadas por letras, números, y `.` o `_`, siempre que el nombre comience con una letra o número. Es importante mencionar que los nombres de las variables se distinguen entre mayúsculas y minúsculas.
+
+Para mostrar el valor de una variable `x` en la pantalla, basta con escribir `x`. Esto es similar al conocido `print(x)`. No obstante, en algunas situaciones, tenemos que utilizar el formato más largo, o su equivalente cercano `show(x)`, por ejemplo, cuando para ver los esultados dentro de un loop.
+
+-   Definiendo objetos
 
 ```{r}
 x <- 100  # entero
@@ -107,11 +112,10 @@ x <- 200
 (1 + 1/x)^x
 ```
 
-Podemos almacenar el resultado de estas operaciones en una variable
+Podemos almacenar el resultado de estas operaciones entre `()`para ver el output inmediatamente.
 
 ```{r}
-y <- (1 + 1/x)^x
-y
+(y <- (1 + 1/x)^x)
 ```
 
 ## Funciones
@@ -120,7 +124,7 @@ En matemática, una función necesita de uno o más argumentos (inputs) para pro
 
 Para llamar a una función en R, se necesita escribir el nombre de la función, seguida de sus argumentos dentro de paréntesis y separados por comas.
 
-La función `seq`genera una secuencia arismética.
+La función `seq`genera una secuencia aritmética.
 
 ```{r}
 seq(from = 1, to = 9, by = 2)
@@ -134,7 +138,7 @@ seq(from = 1, to = 9)
 
 Para obtener más información sobre cualquier función o paquete inslatado, puede tipear `help(name)`o `?name`
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 help(seq)
 ```
 
@@ -252,34 +256,16 @@ Algunas funciones útiles son:
 
 -   `prod(…)`
 
-```{=html}
-<!-- -->
-```
 -   `max(…)`
 
-```{=html}
-<!-- -->
-```
 -   `min(…)`
 
-```{=html}
-<!-- -->
-```
 -   `sqrt(…)`
 
-```{=html}
-<!-- -->
-```
 -   `sort(…)`
 
-```{=html}
-<!-- -->
-```
--    `mean(…)`
+-   `mean(…)`
 
-```{=html}
-<!-- -->
-```
 -   `var(…)`
 
 ```{r}
@@ -294,7 +280,7 @@ mean(1:6)
 sort(c(5,1,3,4,2))
 ```
 
-### EJEMPLO 1: MEDIA Y VARIANZA
+### EJEMPLO: MEDIA Y VARIANZA
 
 ```{r}
 x <- c(1.2, 0.9, 0.8, 1.0, 1.2)
@@ -308,7 +294,7 @@ x.var - var(x)
 
 ```
 
-### EJEMPLO 2: INTEGRACIÓN NUMÉRICA SIMPLE
+### EJEMPLO: INTEGRACIÓN NUMÉRICA SIMPLE
 
 ```{r}
 dt <- 0.005
@@ -324,7 +310,9 @@ ft <- cos(t)
 I - sin(pi/6)
 ```
 
-### EJEMPLO 3: LÍMITE EXPONENCIAL
+### EJEMPLO: LÍMITE EXPONENCIAL
+
+Para dibujar un vector contra otro, se usa la función `plot(x, y, type)`. Dentro de los argumentos de la función `plot`, `x`e `y` deben ser vectores de la misma longitud. El argumento `type`es opcional, utilizado para controlar la apariencia del gráfico: "`p`" para puntos (el valor predeterminado); "`l`" para las líneas; "`o`" para puntos sobre líneas; etc.
 
 ```{r}
 x <- seq(10, 200, by = 10)
@@ -344,7 +332,7 @@ R representa los datos missing a través del valor NA. Estos pueden ser parte de
 
 ```{r}
 a <- NA   # Asignando NA a una variable
-is.na(a)  # Esta variable es missing?
+is.na(a)  # ¿Esta variable es missing?
 ```
 
 ```{r}
@@ -353,7 +341,7 @@ is.na(a)          # Identificando los valores missings
 ```
 
 ```{r}
-any(is.na(a))   #Hay algún dato missing?
+any(is.na(a))   # ¿Hay algún dato missing en el vector a?
 ```
 
 ```{r}
@@ -365,6 +353,8 @@ mean(a)
 ```
 
 ## Expresiones lógicas
+
+El valor que devuelve una expresión lógica es `TRUE` o `FALSE`. De la misma forma, los valores `1` y `0,` pueden ser usador para representar los valores `TRUE` o `FALSE,` respectivamente.
 
 -   `<` o `>`
 
@@ -380,7 +370,7 @@ mean(a)
 
 -   `!` no
 
--   Note que `A|B` es `TRUE` si `A`o `B` o ambos son TRUE. Si se busca una disyuntiva exclusiva, entre A o B, pero no ambos, usar `xcor(A,B)`.
+-   Note que `A|B` es `TRUE` si `A`o `B` o ambos son `TRUE`. Si se busca una disyuntiva exclusiva, entre `A`o `B`, pero no ambos, usar `xor(A,B)`.
 
 ```{r}
 c(0,0,1,1)|c(0,1,0,1)
@@ -390,7 +380,7 @@ c(0,0,1,1)|c(0,1,0,1)
 xor(c(0,0,1,1),c(0,1,0,1))
 ```
 
--   Encontrar los números de 1 a 20 que son divisibles entre 4
+### EJEMPLO: Encontrar los números de 1 a 20 que son divisibles entre 4
 
 ```{r}
 x <- 1:20
@@ -401,7 +391,7 @@ x %% 4 == 0
 (y <- x[x %% 4 == 0])
 ```
 
-R también provee la función `subset(x)` para elegir un vector o subvector de una variable x. La diferencia entre usar `subset` y usar el operador de indexación es que `subset` ignora los missing values, mientras que `x[subset]` los preserva.
+R provee la función `subset(x)` para elegir un vector o subvector de una variable x. La diferencia entre usar `subset` y usar el operador de indexación `x[i]`es que `subset` ignora los missing values, mientras que `x[i]` los preserva.
 
 ```{r}
 x <- c(1, NA, 3, 4)
@@ -416,7 +406,7 @@ x[x > 2]
 subset(x, subset = x > 2)
 ```
 
-Si se busca conocer el índex de aquellos elementos que devuelven TRUE después de una expresión lógica, se usa `which(x)`.
+Si se busca conocer el índex de aquellos elementos que devuelven `TRUE` después de una expresión lógica, se usa `which(x)`.
 
 ```{r}
 x <- c(1, 1, 2, 3, 5, 8, 13)
@@ -424,6 +414,8 @@ which(x %% 2 == 0)
 ```
 
 ### EJEMPLO: ROUNDING ERROR
+
+Solo los enteros y fracciones cuyo denominador es una potencia de 2 pueden representarse exactamente con sin decimales. Todos los demás números están sujetos a error de redondeo.
 
 ```{r}
 2 * 2 == 4
@@ -433,6 +425,8 @@ which(x %% 2 == 0)
 sqrt(2) * sqrt(2) == 2
 ```
 
+El problema aquí es que `sqrt(2)` tiene error de redondeo que se magnifica cuando se le eleva al cuadrado. La solución es utilizar la función `all.equal(x, y)`, que devuelve `TRUE` si la diferencia entre `x` e `y` es menor que algún conjunto de tolerancia, basado en el nivel operativo de precisión de R.
+
 ```{r}
 all.equal(sqrt(2) * sqrt(2), 2)
 ```
@@ -441,12 +435,13 @@ all.equal(sqrt(2) * sqrt(2), 2)
 
 Una matriz es creada con vectores. Se usa la función `matrix(data, nrow = 1, ncol = 1, byrow = FALSE)`.
 
+Aquí, `data` es un vector de longitud a más de dimensión `nrow`\*`ncol`. `nrow` y `ncol` son los números de filas y columnas, respectivamente (con valores predeterminados de 1). `byrow` puede ser `TRUE` o `FALSE` (el valor predeterminado es FALSE) e indica si se desea rellenar la matriz fila por fila, o columna por columna, utilizando los elementos contenidos en `data`. Si `length(data)` es menor que `nrow`\*`ncol`, los valores de `data` se reutilizarán tantas veces como sean necesarios.
+
 ```{r}
 (A <- matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE))
-
 ```
 
-Para conocer la dimensión de una matriz, se usa `dim`
+Para conocer la dimensión de una matriz, se usa `dim:`
 
 ```{r}
 dim(A)
@@ -454,8 +449,14 @@ dim(A)
 
 Para crear una matriz diagonal, se usa `diag(x)`. Para unir matrices con la misma cantidad de filas, se usa `rbind(x)`. Para unir matrices con columnas de la misma extensión (unión horizontal), se usa `cbind()`.
 
+Para referirse a los elementos de una matriz se usan dos índices.
+
 ```{r}
 A[1, 3] <- 0
+A
+```
+
+```{r}
 A[, 2:3]
 ```
 
@@ -463,9 +464,10 @@ A[, 2:3]
 (B <- diag(c(1, 2, 3)))
 ```
 
+Las operaciones algebraicas habituales, incluyendo `*`, actúan elementalmente sobre matrices. Para realizar una multiplicación de matrices, se usa el operador `%*%`. Por otro lado, otras funciones que pueden ser usadas con matrices son \``nrow(x)`, `ncol(x)`, `det(x)`(el determinante), `t(x)` (la transpuesta) y `solve(A, B)`, que devuelve `x` tal que `A %*% x == B`. Si `A` es invertible, entonces `solve(A)` devuelve la matriz inversa de A.
+
 ```{r}
 (A <- matrix(c(3, 5, 2, 3), nrow = 2, ncol = 2))
-
 ```
 
 ```{r}
@@ -492,25 +494,35 @@ A %*% A.inv
  A^(-1)
 ```
 
+Mientras que R imprime un vector `x` (que no tiene atributos de dimensión), en operaciones con matrices, tratará a `x` como un vector fila o columna en su intento de hacer que los componentes sean operables.
+
 ```{r}
 A <- matrix(c(3, 5, 2, 3), nrow = 2, ncol = 2)
+A
+```
+
+```{r}
 (x <- c(1,2))
 ```
 
 ```{r}
- x %*% A
+x %*% A
 ```
 
 ```{r}
- A %*% x
-```
-
-```{r}
-
+A %*% x
 ```
 
 ## Espacio de trabajo
 
-Para hacer un listado de todos los objetos, use `ls()` o `objects()`. Para remover el objeto `x`, use `rm(x)`. Para remover todo los objetos, use `rm(list=ls())`
+Para hacer un listado de todos los objetos, use `ls()` o `objects()`.
 
-Para guardar todos los objetos en un archivo llamado `fname` en el espacio de trabajo actual, use `save.image(file = "fname")`. Para guardar objetos específicos, use `save(x, y, file = "fname").` Para abrir un set de objetos guardados, use `load(file = "fname")`.
+Para remover un objeto `x`, use `rm(x)`.
+
+Para remover todo los objetos, use `rm(list=ls()).`
+
+Para guardar todos los objetos en un archivo llamado `fname` en el espacio de trabajo actual, use `save.image(file = "fname")`.
+
+Para guardar objetos específicos, use `save(x, y, file = "fname").`
+
+Para abrir un set de objetos guardados, use `load(file = "fname")`.
